@@ -1,4 +1,4 @@
-"use stricts"
+"use strict"
 
 var BookingsServer = require("./server.js").BookingsServer
 var BookingsService = require("./service.js").BookingsService

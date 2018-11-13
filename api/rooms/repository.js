@@ -1,13 +1,16 @@
-"use stricts"
+"use strict"
 
 const roomCollectionName = "rooms"
 
+// RoomsRepository represents the underlying implementation of persistence layer for
+// Rooms collection.
 class RoomsRepository{
     constructor(db) {
         this.db = db
     }
 }
 
+// Find a room.
 RoomsRepository.prototype.Find = function(filterOptions, otherOptions) {
     db = this.db
     filters = filterOptions
@@ -25,6 +28,7 @@ RoomsRepository.prototype.Find = function(filterOptions, otherOptions) {
     })
 }
 
+// Save a room.
 RoomsRepository.prototype.Save = function(room) {
     db = this.db
     return new Promise(function(resolve, reject){
@@ -38,6 +42,7 @@ RoomsRepository.prototype.Save = function(room) {
     })
 }
 
+// Delete a room.
 RoomsRepository.prototype.Delete = function(room) {
     db = this.db
     return new Promise(function(resolve, reject){
@@ -51,6 +56,7 @@ RoomsRepository.prototype.Delete = function(room) {
     })
 }
 
+// Update a room.
 RoomsRepository.prototype.Update = function(room) {
     db = this.db
     return new Promise(function(resolve, reject){

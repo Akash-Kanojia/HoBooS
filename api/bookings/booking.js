@@ -1,4 +1,4 @@
-"use stricts"
+"use strict"
 var uuid = require("uuid/v4")
 
 // Booking represents a reservation of an accomodation for a user.

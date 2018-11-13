@@ -1,16 +1,18 @@
-"use stricts"
+"use strict"
 
 var User = require("./user.js").User
 // Routes.
 const users = "/users"
 const userByEmail = "/users/:email"
 
+// UserServer listen and serves the user's rest api.
 class UsersServer{
     constructor(UsersService){
         this.UsersService = UsersService
     }
 }
 
+// Inbvokes the server.
 UsersServer.prototype.Invoke = function(app) {
     UsersService = this.UsersService
    

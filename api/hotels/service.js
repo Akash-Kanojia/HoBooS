@@ -1,5 +1,6 @@
-"use stricts"
+"use strict"
 
+// HotelsService represents the service layer for hotel.
 class HotelsService{
     constructor(HotelsRepository, RoomsRepository) {
         this.HotelsRepository = HotelsRepository
@@ -7,6 +8,7 @@ class HotelsService{
     }
 }
 
+// Find a hotel.
 HotelsService.prototype.Find = function(filterOptions) {
     repository = this.HotelsRepository
     filters = filterOptions
@@ -22,6 +24,7 @@ HotelsService.prototype.Find = function(filterOptions) {
     })
 }
 
+// Create a hotel.
 HotelsService.prototype.Create = function(hotel) {
     repository = this.HotelsRepository
     return new Promise(function(resolve, reject){
@@ -35,6 +38,7 @@ HotelsService.prototype.Create = function(hotel) {
     })
 }
 
+// Update a hotel.
 HotelsService.prototype.Update = function(hotel) {
     repository = this.HotelsRepository
     return new Promise(function(resolve, reject){
@@ -48,6 +52,7 @@ HotelsService.prototype.Update = function(hotel) {
     })
 }
 
+// Delete a hotel.
 HotelsService.prototype.Delete = function(hotel) {
     repository = this.HotelsRepository
     return new Promise(function(resolve, reject){

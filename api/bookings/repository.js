@@ -1,4 +1,4 @@
-"use stricts"
+"use strict"
 
 const bookingsCollectionName = "bookings"
 

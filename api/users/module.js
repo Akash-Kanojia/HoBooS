@@ -1,4 +1,4 @@
-"use stricts"
+"use strict"
 
 var UsersServer = require("./server.js").UsersServer
 var UsersService = require("./service.js").UsersService

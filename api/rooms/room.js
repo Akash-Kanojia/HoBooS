@@ -1,6 +1,7 @@
-"use stricts"
+"use strict"
 var uuid = require("uuid/v4")
 
+// Room represents an entity that can be booked for an accomodation by a user.
 class Room {
     constructor(id, no, hotel_id, type){
         if (id == null) {

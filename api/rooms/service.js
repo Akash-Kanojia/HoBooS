@@ -1,7 +1,8 @@
-"use stricts"
+"use strict"
 
 var Promise = require("core-js").Promise
 
+// RoomsService represents tha service layer for rooms.
 class RoomsService{
     constructor(
         RoomsRepository,
@@ -14,6 +15,7 @@ class RoomsService{
     }
 }
 
+// find a room.
 RoomsService.prototype.Find = function(filterOptions, otherOptions, projection) {
     rooms = this.RoomsRepository
     roomFilters = filterOptions
@@ -48,6 +50,7 @@ RoomsService.prototype.Find = function(filterOptions, otherOptions, projection) 
     })
 }
 
+// Create a room.
 RoomsService.prototype.Create = function(room) {
     rooms = this.RoomsRepository
     hotels = this.HotelsRepository
@@ -73,6 +76,7 @@ RoomsService.prototype.Create = function(room) {
     })
 }
 
+// Update a room.
 RoomsService.prototype.Update = function(room) {
     rooms = this.RoomsRepository
     return new Promise(function(resolve, reject){
@@ -86,6 +90,7 @@ RoomsService.prototype.Update = function(room) {
     })
 }
 
+// Delete a room.
 RoomsService.prototype.Delete = function(room) {
     rooms = this.RoomsRepository
     return new Promise(function(resolve, reject){
@@ -99,6 +104,7 @@ RoomsService.prototype.Delete = function(room) {
     })
 }
 
+// Helper method to find unAvailable / booked rooms.
 RoomsService.prototype.UnAvailableRooms = function(filters, others) {
     var bookingFilterOption = {}
     if (others.from && others.to) {

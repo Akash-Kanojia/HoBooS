@@ -1,13 +1,16 @@
-"use stricts"
+"use strict"
 
 const usersCollectionName = "users"
 
+// UsersRepository represents the underlying implementation of persistence layer for
+// Users collection.
 class UsersRepository{
     constructor(db) {
         this.db = db
     }
 }
 
+// Find a user.
 UsersRepository.prototype.Find = function(filterOptions) {
     db = this.db
     filters = filterOptions 
@@ -22,6 +25,7 @@ UsersRepository.prototype.Find = function(filterOptions) {
     })
 }
 
+// Save a User.
 UsersRepository.prototype.Save = function(user) {
     db = this.db
     return new Promise(function(resolve, reject){
@@ -35,6 +39,7 @@ UsersRepository.prototype.Save = function(user) {
     })
 }
 
+// Delete a user
 UsersRepository.prototype.Delete = function(user) {
     db = this.db
     return new Promise(function(resolve, reject){
@@ -48,6 +53,7 @@ UsersRepository.prototype.Delete = function(user) {
     })
 }
 
+// Update a user
 UsersRepository.prototype.Update = function(user) {
     db = this.db
     return new Promise(function(resolve, reject){

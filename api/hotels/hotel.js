@@ -1,6 +1,7 @@
-"use stricts"
+"use strict"
 var uuid = require("uuid/v4")
 
+// Hotel represents a group of rooms.
 class Hotel{
     constructor(id, name, location, type, rooms) {
         if (id == null) {

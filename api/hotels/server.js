@@ -1,4 +1,4 @@
-"use stricts"
+"use strict"
 
 var Hotel = require("./hotel.js").Hotel
 
@@ -6,6 +6,7 @@ var Hotel = require("./hotel.js").Hotel
 const hotels = "/hotels"
 const hotelById = "/hotels/:id"
 
+// HotelsServer serve and listen thes hotel's rest api.
 class HotelsServer{
     constructor(HotelsService){
         this.HotelsService = HotelsService

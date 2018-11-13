@@ -1,13 +1,16 @@
-"use stricts"
+"use strict"
 
 const hotelCollectionName = "hotels"
 
+// HotelsRepository represents the underlying implementation of persistence layer for
+// Hotels collection.
 class HotelsRepository{
     constructor(db) {
         this.db = db
     }
 }
 
+// Find hotels.
 HotelsRepository.prototype.Find = function(filterOptions) {
     db = this.db
     filters = filterOptions
@@ -22,6 +25,7 @@ HotelsRepository.prototype.Find = function(filterOptions) {
     })
 }
 
+// Save a hotel.
 HotelsRepository.prototype.Save = function(hotel) {
     db = this.db
     return new Promise(function(resolve, reject){
@@ -35,6 +39,7 @@ HotelsRepository.prototype.Save = function(hotel) {
     })
 }
 
+// Delete a hotel.
 HotelsRepository.prototype.Delete = function(hotel) {
     db = this.db
     return new Promise(function(resolve, reject){
@@ -48,6 +53,7 @@ HotelsRepository.prototype.Delete = function(hotel) {
     })
 }
 
+// Update a hotel.
 HotelsRepository.prototype.Update = function(hotel) {
     db = this.db
     return new Promise(function(resolve, reject){

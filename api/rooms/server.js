@@ -1,4 +1,4 @@
-"use stricts"
+"use strict"
 
 var Room = require("./room.js").Room
 var Promise = require("core-js").Promise
@@ -7,12 +7,14 @@ var Promise = require("core-js").Promise
 const rooms = "/rooms"
 const roomById = "/rooms/:id"
 
+// RoomsServer serve and listen thes room's rest api.
 class RoomsServer{
     constructor(RoomsService){
         this.RoomsService = RoomsService
     }
 }
 
+// Invokes the server.
 RoomsServer.prototype.Invoke = function(app) {
     RoomsService = this.RoomsService
    

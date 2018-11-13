@@ -6,7 +6,7 @@ This api server uses uses `MongoDB` for data persistence and `express` for http 
 
 ## Ubiquitous language.
 
-- A `Room` represents an entity that can be booked by a user.
+- A `Room` represents an entity that can be booked for an accomodation by an user.
 - A `Hotel` has many rooms.
 - `Booking` belongs to a room
 

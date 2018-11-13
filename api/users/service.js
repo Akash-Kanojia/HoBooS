@@ -1,11 +1,13 @@
-"use stricts"
+"use strict"
 
+// UsersService Represents the service layer  for user.
 class UsersService{
     constructor(UsersRepository) {
         this.UsersRepository = UsersRepository
     }
 }
 
+// Find users.
 UsersService.prototype.Find = function(filterOptions) {
     repository = this.UsersRepository
     filters = filterOptions
@@ -21,6 +23,7 @@ UsersService.prototype.Find = function(filterOptions) {
     })
 }
 
+// Create a user.
 UsersService.prototype.Create = function(user) {
     repository = this.UsersRepository
     return new Promise(function(resolve, reject){
@@ -46,6 +49,7 @@ UsersService.prototype.Create = function(user) {
     })
 }
 
+// UIpdate a user.
 UsersService.prototype.Update = function(user) {
     repository = this.UsersRepository
     return new Promise(function(resolve, reject){
@@ -59,6 +63,7 @@ UsersService.prototype.Update = function(user) {
     })
 }
 
+// Delete a user.
 UsersService.prototype.Delete = function(user) {
     repository = this.UsersRepository
     return new Promise(function(resolve, reject){

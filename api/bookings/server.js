@@ -1,4 +1,4 @@
-"use stricts"
+"use strict"
 
 var Booking = require("./booking.js").Booking
 var Promise = require("core-js").Promise
@@ -14,6 +14,7 @@ class BookingsServer{
     }
 }
 
+// Invokes the booking server.
 BookingsServer.prototype.Invoke = function(app) {
     BookingsService = this.BookingsService
    

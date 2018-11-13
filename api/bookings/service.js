@@ -1,7 +1,8 @@
-"use stricts"
+"use strict"
 
 var Promise = require("core-js").Promise
 
+// BookingsService represents the service layer for bookings
 class BookingsService {
     constructor(BookingsRepository, RoomsRepository, UsersRepository) {
         this.RoomsRepository = RoomsRepository
