@@ -255,7 +255,8 @@ To see all bookings don't give any headers.
 |from| `13-11-2018` | 
 |to| `17-11-2018` |
 
-Given this keys results
+Given this <key,value> results
+|key|value|
 |---|---|
 |user_email|`akash@hoboos.com`|
 |from| `13-11-2018` | 

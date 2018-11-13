@@ -1,6 +1,7 @@
 "use stricts"
 var uuid = require("uuid/v4")
 
+// Booking represents a reservation of an accomodation for a user.
 class Booking{
     constructor(id, user_email, hotel_id, room_id, from, to, no_of_people){
         if (id == null) {
