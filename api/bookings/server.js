@@ -8,6 +8,7 @@ const bookings = "/bookings"
 const bookingByID = "/bookings/:id"
 const availableRooms = "/rooms"
 
+// BookingsServer serve and listen thes booking's rest api.
 class BookingsServer{
     constructor(BookingsService){
         this.BookingsService = BookingsService
