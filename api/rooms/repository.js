@@ -12,9 +12,9 @@ class RoomsRepository{
 
 // Find a room.
 RoomsRepository.prototype.Find = function(filterOptions, otherOptions) {
-    db = this.db
-    filters = filterOptions
-    others = otherOptions
+    let db = this.db
+    let filters = filterOptions
+    let others = otherOptions
     return new Promise(function(resolve, reject){
         console.log("find rooms", {...filters, ...others});
         
@@ -30,7 +30,7 @@ RoomsRepository.prototype.Find = function(filterOptions, otherOptions) {
 
 // Save a room.
 RoomsRepository.prototype.Save = function(room) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(roomCollectionName).insertOne(
             room,
@@ -44,7 +44,7 @@ RoomsRepository.prototype.Save = function(room) {
 
 // Delete a room.
 RoomsRepository.prototype.Delete = function(room) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(roomCollectionName).deleteOne(
             {id : room.id},
@@ -58,7 +58,7 @@ RoomsRepository.prototype.Delete = function(room) {
 
 // Update a room.
 RoomsRepository.prototype.Update = function(room) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(roomCollectionName).updateOne(
             {id : room.id},

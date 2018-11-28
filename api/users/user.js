@@ -1,16 +1,24 @@
 "use strict";
+var crypto = require('crypto')
 
-var uuid = require("uuid/v4")
-
+const passwordSalt = "hoboos-password-salt"
 // Constructor
 class User{
-    constructor(email, name, secret) {
+    constructor(email, name, password) {
         this.email = email
         this.name = name
-        this.secret = secret
+        if (password !=  null && password != "") {
+            // Persist the hash of the password to maintain privacy.
+            this.secret = crypto.createHmac(
+                "sha1", 
+                passwordSalt,
+            ).update(password)
+            .digest("hex")
+        }
     }
 }
 
 module.exports = {
-    User
+    User,
+    passwordSalt
 }

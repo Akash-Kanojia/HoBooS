@@ -12,8 +12,8 @@ class HotelsRepository{
 
 // Find hotels.
 HotelsRepository.prototype.Find = function(filterOptions) {
-    db = this.db
-    filters = filterOptions
+    let db = this.db
+    let filters = filterOptions
     return new Promise(function(resolve, reject){
         db.collection(hotelCollectionName).find(
             filters,
@@ -27,7 +27,7 @@ HotelsRepository.prototype.Find = function(filterOptions) {
 
 // Save a hotel.
 HotelsRepository.prototype.Save = function(hotel) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(hotelCollectionName).insertOne(
             hotel,
@@ -41,7 +41,7 @@ HotelsRepository.prototype.Save = function(hotel) {
 
 // Delete a hotel.
 HotelsRepository.prototype.Delete = function(hotel) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(hotelCollectionName).deleteOne(
             {id : hotel.id},
@@ -55,7 +55,7 @@ HotelsRepository.prototype.Delete = function(hotel) {
 
 // Update a hotel.
 HotelsRepository.prototype.Update = function(hotel) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(hotelCollectionName).updateOne(
             {id : hotel.id},

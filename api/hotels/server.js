@@ -14,7 +14,7 @@ class HotelsServer{
 }
 
 HotelsServer.prototype.Invoke = function(app) {
-    service = this.HotelsService
+   let service = this.HotelsService
    
     // Create hotels.
     app.post(hotels, function (req, res) {

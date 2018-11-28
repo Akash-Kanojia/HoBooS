@@ -12,8 +12,8 @@ class UsersRepository{
 
 // Find a user.
 UsersRepository.prototype.Find = function(filterOptions) {
-    db = this.db
-    filters = filterOptions 
+    let db = this.db
+    let filters = filterOptions 
     return new Promise(function(resolve, reject){
         db.collection(usersCollectionName).find(
             filters,
@@ -27,7 +27,7 @@ UsersRepository.prototype.Find = function(filterOptions) {
 
 // Save a User.
 UsersRepository.prototype.Save = function(user) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(usersCollectionName).insertOne(
             user,
@@ -41,7 +41,7 @@ UsersRepository.prototype.Save = function(user) {
 
 // Delete a user
 UsersRepository.prototype.Delete = function(user) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(usersCollectionName).deleteOne(
             {email : user.email},
@@ -55,7 +55,7 @@ UsersRepository.prototype.Delete = function(user) {
 
 // Update a user
 UsersRepository.prototype.Update = function(user) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(usersCollectionName).updateOne(
             {email : user.email},

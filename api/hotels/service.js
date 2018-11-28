@@ -10,8 +10,8 @@ class HotelsService{
 
 // Find a hotel.
 HotelsService.prototype.Find = function(filterOptions) {
-    repository = this.HotelsRepository
-    filters = filterOptions
+    let repository = this.HotelsRepository
+    let filters = filterOptions
 
     return new Promise(function(resolve, reject){
         repository.Find(
@@ -26,7 +26,7 @@ HotelsService.prototype.Find = function(filterOptions) {
 
 // Create a hotel.
 HotelsService.prototype.Create = function(hotel) {
-    repository = this.HotelsRepository
+    let repository = this.HotelsRepository
     return new Promise(function(resolve, reject){
         repository.Save(
             hotel
@@ -40,7 +40,7 @@ HotelsService.prototype.Create = function(hotel) {
 
 // Update a hotel.
 HotelsService.prototype.Update = function(hotel) {
-    repository = this.HotelsRepository
+    let repository = this.HotelsRepository
     return new Promise(function(resolve, reject){
         repository.Update(
             hotel
@@ -54,7 +54,7 @@ HotelsService.prototype.Update = function(hotel) {
 
 // Delete a hotel.
 HotelsService.prototype.Delete = function(hotel) {
-    repository = this.HotelsRepository
+    let repository = this.HotelsRepository
     return new Promise(function(resolve, reject){
         repository.Delete(
             hotel

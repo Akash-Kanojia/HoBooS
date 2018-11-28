@@ -6,6 +6,7 @@ var usersModule = require("./api/users/module.js")
 var hotelsModule = require("./api/hotels/module.js")
 var roomsModule = require("./api/rooms/module.js")
 var bookingsModule = require("./api/bookings/module.js")
+var authModule = require("./api/users/auth/module.js")
 
 var app = express();
 app.use(bodyParser.json());
@@ -41,11 +42,13 @@ db.Connect().then(function(db){
     var roomServer = new roomsModule.RoomsServer(roomService)
     var hotelServer = new hotelsModule.HotelsServer(hotelService)
     var userServer = new usersModule.UsersServer(userService)
+    var authServer = new authModule.AuthServer(userService)
 
     bookingServer.Invoke(app)
     roomServer.Invoke(app)
     hotelServer.Invoke(app)
     userServer.Invoke(app)
+    authServer.Invoke(app)
     
 }).catch(function(err){
     console.log("error in connecting database ", err)

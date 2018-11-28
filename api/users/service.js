@@ -9,8 +9,8 @@ class UsersService{
 
 // Find users.
 UsersService.prototype.Find = function(filterOptions) {
-    repository = this.UsersRepository
-    filters = filterOptions
+    let repository = this.UsersRepository
+    let filters = filterOptions
 
     return new Promise(function(resolve, reject){
         repository.Find(
@@ -25,7 +25,7 @@ UsersService.prototype.Find = function(filterOptions) {
 
 // Create a user.
 UsersService.prototype.Create = function(user) {
-    repository = this.UsersRepository
+    let repository = this.UsersRepository
     return new Promise(function(resolve, reject){
         repository.Find(
             {email: user.email},
@@ -43,15 +43,13 @@ UsersService.prototype.Create = function(user) {
             }
         }).catch(function(err){
             reject(err)
-        })
-
-       
+        })       
     })
 }
 
 // UIpdate a user.
 UsersService.prototype.Update = function(user) {
-    repository = this.UsersRepository
+    let repository = this.UsersRepository
     return new Promise(function(resolve, reject){
         repository.Update(
             user
@@ -65,7 +63,7 @@ UsersService.prototype.Update = function(user) {
 
 // Delete a user.
 UsersService.prototype.Delete = function(user) {
-    repository = this.UsersRepository
+    let repository = this.UsersRepository
     return new Promise(function(resolve, reject){
         repository.Delete(
             user

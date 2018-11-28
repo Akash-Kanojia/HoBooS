@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "body-parser": "^1.x",
+    "browser-cookies": "^1.2.0",
+    "core-js": "^2.x",
+    "cryptr": "^4.0.2",
     "express": "4.x",
     "mongodb": "3.x",
-    "core-js": "^2.x",
-    "uuid": "3.x",
-    "body-parser": "^1.x",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "uuid": "3.x"
   },
   "name": "hoboos",
   "version": "1.0.0",

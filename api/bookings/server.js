@@ -6,7 +6,6 @@ var Promise = require("core-js").Promise
 // Routes.
 const bookings = "/bookings"
 const bookingByID = "/bookings/:id"
-const availableRooms = "/rooms"
 
 // BookingsServer serve and listen thes booking's rest api.
 class BookingsServer{
@@ -17,7 +16,7 @@ class BookingsServer{
 
 // Invokes the booking server.
 BookingsServer.prototype.Invoke = function(app) {
-    BookingsService = this.BookingsService
+   let BookingsService = this.BookingsService
    
     // Create booking.
     app.post(bookings, function (req, res) {

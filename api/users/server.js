@@ -14,7 +14,7 @@ class UsersServer{
 
 // Inbvokes the server.
 UsersServer.prototype.Invoke = function(app) {
-    UsersService = this.UsersService
+    let UsersService = this.UsersService
    
     // Create room for hotel.
     app.post(users, function (req, res) {
@@ -34,7 +34,7 @@ UsersServer.prototype.Invoke = function(app) {
         })   
      })
 
-     // Find rooms.
+     // Find users.
     app.get(users, function (req, res) {
         var filters = userFilterOptions(req)
         UsersService.Find(
@@ -47,9 +47,9 @@ UsersServer.prototype.Invoke = function(app) {
         })
     })
 
-    // Update room details.
+    // update user by email.
     app.put(userByEmail, function(req, res) {
-        email = req.params.email
+        let email = req.params.email
         var userReq = JSON.parse(JSON.stringify(req.body))
         var user = new User(
             email,
@@ -66,9 +66,9 @@ UsersServer.prototype.Invoke = function(app) {
         })  
     })
 
-    // Delete room from hotel.
+    // Delete user by email.
     app.delete(userByEmail, function(req, res) {
-        email = req.params.email
+        let email = req.params.email
         UsersService.Delete(
             new User(email),
         ).then(function(data){

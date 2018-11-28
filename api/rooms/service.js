@@ -17,11 +17,11 @@ class RoomsService{
 
 // find a room.
 RoomsService.prototype.Find = function(filterOptions, otherOptions, projection) {
-    rooms = this.RoomsRepository
-    roomFilters = filterOptions
-    roomOthers = otherOptions
+    let rooms = this.RoomsRepository
+    let roomFilters = filterOptions
+    let roomOthers = otherOptions
     
-    noRooms = this.UnAvailableRooms(roomFilters, roomOthers)
+    let noRooms = this.UnAvailableRooms(roomFilters, roomOthers)
 
     return new Promise(function(resolve, reject){
         if (roomOthers != undefined && roomOthers.available) {
@@ -52,8 +52,8 @@ RoomsService.prototype.Find = function(filterOptions, otherOptions, projection) 
 
 // Create a room.
 RoomsService.prototype.Create = function(room) {
-    rooms = this.RoomsRepository
-    hotels = this.HotelsRepository
+    let rooms = this.RoomsRepository
+    let hotels = this.HotelsRepository
     return new Promise(function(resolve, reject){
         hotels.Find(
             {id: room.hotel_id}
@@ -78,7 +78,7 @@ RoomsService.prototype.Create = function(room) {
 
 // Update a room.
 RoomsService.prototype.Update = function(room) {
-    rooms = this.RoomsRepository
+    let rooms = this.RoomsRepository
     return new Promise(function(resolve, reject){
         rooms.Update(
             room
@@ -92,7 +92,7 @@ RoomsService.prototype.Update = function(room) {
 
 // Delete a room.
 RoomsService.prototype.Delete = function(room) {
-    rooms = this.RoomsRepository
+    let rooms = this.RoomsRepository
     return new Promise(function(resolve, reject){
         rooms.Delete(
             room

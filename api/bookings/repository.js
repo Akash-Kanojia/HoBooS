@@ -12,9 +12,9 @@ class BookingsRepository{
 
 // Find the bookings.
 BookingsRepository.prototype.Find = function(filterOptions, projectionOptions) {
-    db = this.db
-    filters = filterOptions
-    projections = projectionOptions
+    let db = this.db
+    let filters = filterOptions
+    let projections = projectionOptions
     return new Promise(function(resolve, reject){
         db.collection(bookingsCollectionName).find(
             filters,
@@ -29,7 +29,7 @@ BookingsRepository.prototype.Find = function(filterOptions, projectionOptions) {
 
 // Save bookings.
 BookingsRepository.prototype.Save = function(booking) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(bookingsCollectionName).insertOne(
             booking,
@@ -43,7 +43,7 @@ BookingsRepository.prototype.Save = function(booking) {
 
 // Delete booking.
 BookingsRepository.prototype.Delete = function(booking) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(bookingsCollectionName).deleteOne(
             {id : booking.id},
@@ -57,7 +57,7 @@ BookingsRepository.prototype.Delete = function(booking) {
 
 // Update booking.
 BookingsRepository.prototype.Update = function(booking) {
-    db = this.db
+    let db = this.db
     return new Promise(function(resolve, reject){
         db.collection(bookingsCollectionName).updateOne(
             {id : booking.id},

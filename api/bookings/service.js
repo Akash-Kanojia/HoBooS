@@ -13,9 +13,9 @@ class BookingsService {
 
 // Find bookings as per findOption.
 BookingsService.prototype.Find = function(filterOptions, projectionOptions) {
-    bookings = this.BookingsRepository
-    filters = filterOptions
-    projections = projectionOptions
+    let bookings = this.BookingsRepository
+    let filters = filterOptions
+    let projections = projectionOptions
 
     return new Promise(function(resolve, reject){
         bookings.Find(
@@ -31,9 +31,9 @@ BookingsService.prototype.Find = function(filterOptions, projectionOptions) {
 
 // Create bookings
 BookingsService.prototype.Create = function(booking) {
-    bookings = this.BookingsRepository
-    rooms = this.RoomsRepository
-    users = this.UsersRepository
+    let bookings = this.BookingsRepository
+    let rooms = this.RoomsRepository
+    let users = this.UsersRepository
     return new Promise(function(resolve, reject){
         users.Find(
             {email: booking.user_email}
@@ -68,7 +68,7 @@ BookingsService.prototype.Create = function(booking) {
 
 // Update bookings
 BookingsService.prototype.Update = function(booking) {
-    bookings = this.BookingsRepository
+    let bookings = this.BookingsRepository
     return new Promise(function(resolve, reject){
         bookings.Update(
             booking
@@ -82,7 +82,7 @@ BookingsService.prototype.Update = function(booking) {
 
 // Delete bookings
 BookingsService.prototype.Delete = function(booking) {
-    bookings = this.BookingsRepository
+    let bookings = this.BookingsRepository
     return new Promise(function(resolve, reject){
         bookings.Delete(
             booking
