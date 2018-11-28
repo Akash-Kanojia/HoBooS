@@ -4,8 +4,10 @@ var Room = require("./room.js").Room
 var Promise = require("core-js").Promise
 
 // Routes
-const rooms = "/rooms"
-const roomById = "/rooms/:id"
+var Routes = {
+    rooms: "/rooms",
+    roomById: "/rooms/:id"
+}
 
 // RoomsServer serve and listen thes room's rest api.
 class RoomsServer{
@@ -19,7 +21,7 @@ RoomsServer.prototype.Invoke = function(app) {
     let RoomsService = this.RoomsService
    
     // Create room for hotel.
-    app.post(rooms, function (req, res) {
+    app.post(Routes.rooms, function (req, res) {
         var hotel_id = req.get("hotel_id")
         var roomReq = JSON.parse(JSON.stringify(req.body))
         var room = new Room(
@@ -39,7 +41,7 @@ RoomsServer.prototype.Invoke = function(app) {
      })
 
      // Find rooms.
-    app.get(rooms, function (req, res) {
+    app.get(Routes.rooms, function (req, res) {
         var filters = roomsFilterOptions(req)
         var others = roomsOtherOptions(req)        
         RoomsService.Find(
@@ -54,13 +56,13 @@ RoomsServer.prototype.Invoke = function(app) {
     })
 
     // Update room details.
-    app.put(roomById, function(req, res) {
+    app.put(Routes.roomById, function(req, res) {
         // TODO: update rooms with limitations.
         res.send("can't update room details at the moment")
     })
 
     // Delete room from hotel.
-    app.delete(roomById, function(req, res) {
+    app.delete(Routes.roomById, function(req, res) {
         // TODO: delete rooms with a valid usecase.
         res.send("can't delete room at the moment")
     })
@@ -104,5 +106,6 @@ function roomsOtherOptions(req) {
 }
 
 module.exports = {
-    RoomsServer
+    RoomsServer,
+    Routes
 }

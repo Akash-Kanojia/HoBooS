@@ -3,8 +3,10 @@
 var Hotel = require("./hotel.js").Hotel
 
 // Routes
-const hotels = "/hotels"
-const hotelById = "/hotels/:id"
+var Routes = {
+    hotels: "/hotels",
+    hotelById: "/hotels/:id"    
+}
 
 // HotelsServer serve and listen thes hotel's rest api.
 class HotelsServer{
@@ -17,7 +19,7 @@ HotelsServer.prototype.Invoke = function(app) {
    let service = this.HotelsService
    
     // Create hotels.
-    app.post(hotels, function (req, res) {
+    app.post(Routes.hotels, function (req, res) {
         var hotelReq = JSON.parse(JSON.stringify(req.body))
         var hotel = new Hotel(
             null,
@@ -37,7 +39,7 @@ HotelsServer.prototype.Invoke = function(app) {
      })
 
      // Find hotels.
-    app.get(hotels, function (req, res) {
+    app.get(Routes.hotels, function (req, res) {
         var filter = hotelsFilterOptions(req)
         
         service.Find(
@@ -51,7 +53,7 @@ HotelsServer.prototype.Invoke = function(app) {
     })
 
     // Update hotel.
-    app.put(hotelById, function(req, res) {
+    app.put(Routes.hotelById, function(req, res) {
         id = req.params.id
         var hotelReq = JSON.parse(JSON.stringify(req.body))
         var hotel = new Hotel(
@@ -72,7 +74,7 @@ HotelsServer.prototype.Invoke = function(app) {
     })
 
     // Delete hotel.
-    app.delete(hotelById, function(req, res) {
+    app.delete(Routes.hotelById, function(req, res) {
         id = req.params.id
         service.Delete(
             new Hotel(id),
@@ -103,5 +105,6 @@ function hotelsFilterOptions(req) {
 }
 
 module.exports = {
-    HotelsServer
+    HotelsServer,
+    Routes
 }

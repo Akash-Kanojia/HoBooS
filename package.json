@@ -3,6 +3,7 @@
     "body-parser": "^1.x",
     "browser-cookies": "^1.2.0",
     "core-js": "^2.x",
+    "cors": "^2.8.5",
     "cryptr": "^4.0.2",
     "express": "4.x",
     "mongodb": "3.x",

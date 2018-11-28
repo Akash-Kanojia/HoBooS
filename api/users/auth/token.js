@@ -4,21 +4,21 @@ var Cryptr = require('cryptr');
 
 const sessionSecret = "hoboos-session-secret"
 
-class CookieUtil {
+class Token {
     constructor(){
         this.cryptr = new Cryptr(sessionSecret);
     }
 }
 // Creates cookie for user.
-CookieUtil.prototype.createCookie = function (email) {
+Token.prototype.create = function (email) {
     return this.cryptr.encrypt(email)
 }
 
 // Get user email from cookie.
-CookieUtil.prototype.getUser = function(cookie){
+Token.prototype.getUser = function(cookie){
     return this.cryptr.decrypt(cookie)
 }
 
 module.exports = {
-    CookieUtil
+    Token
 }

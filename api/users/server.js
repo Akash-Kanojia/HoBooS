@@ -1,9 +1,12 @@
 "use strict"
 
 var User = require("./user.js").User
+
 // Routes.
-const users = "/users"
-const userByEmail = "/users/:email"
+var Routes = {
+    users: "/users",
+    userByEmail: "/users/:email"
+}
 
 // UserServer listen and serves the user's rest api.
 class UsersServer{
@@ -17,7 +20,7 @@ UsersServer.prototype.Invoke = function(app) {
     let UsersService = this.UsersService
    
     // Create room for hotel.
-    app.post(users, function (req, res) {
+    app.post(Routes.users, function (req, res) {
         var userReq = JSON.parse(JSON.stringify(req.body))
         var user = new User(
             userReq.email,
@@ -35,7 +38,7 @@ UsersServer.prototype.Invoke = function(app) {
      })
 
      // Find users.
-    app.get(users, function (req, res) {
+    app.get(Routes.users, function (req, res) {
         var filters = userFilterOptions(req)
         UsersService.Find(
             filters,
@@ -48,7 +51,7 @@ UsersServer.prototype.Invoke = function(app) {
     })
 
     // update user by email.
-    app.put(userByEmail, function(req, res) {
+    app.put(Routes.userByEmail, function(req, res) {
         let email = req.params.email
         var userReq = JSON.parse(JSON.stringify(req.body))
         var user = new User(
@@ -67,7 +70,7 @@ UsersServer.prototype.Invoke = function(app) {
     })
 
     // Delete user by email.
-    app.delete(userByEmail, function(req, res) {
+    app.delete(Routes.userByEmail, function(req, res) {
         let email = req.params.email
         UsersService.Delete(
             new User(email),
@@ -93,5 +96,6 @@ function userFilterOptions(req) {
 }
 
 module.exports = {
-    UsersServer
+    UsersServer,
+    Routes
 }

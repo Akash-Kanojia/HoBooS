@@ -1,4 +1,5 @@
 var express = require("express")
+var cors = require('cors');
 var process = require("process")
 var bodyParser = require('body-parser')
 var db = require("./mongodb.js");
@@ -9,6 +10,13 @@ var bookingsModule = require("./api/bookings/module.js")
 var authModule = require("./api/users/auth/module.js")
 
 var app = express();
+var authService
+var routeNeedsAuth = [
+    hotelsModule.Server.Routes.hotels,
+    roomsModule.Server.Routes.rooms,
+    bookingsModule.Server.Routes.bookings,
+]
+
 app.use(bodyParser.json());
 
 db.Connect().then(function(db){
@@ -37,12 +45,14 @@ db.Connect().then(function(db){
     )
     var userService = new usersModule.UsersService(usersRepository)
 
+    authService = new authModule.AuthService()
+
     // Initialize servers.
-    var bookingServer = new bookingsModule.BookingsServer(bookingService)
-    var roomServer = new roomsModule.RoomsServer(roomService)
-    var hotelServer = new hotelsModule.HotelsServer(hotelService)
-    var userServer = new usersModule.UsersServer(userService)
-    var authServer = new authModule.AuthServer(userService)
+    var bookingServer = new bookingsModule.Server.BookingsServer(bookingService)
+    var roomServer = new roomsModule.Server.RoomsServer(roomService)
+    var hotelServer = new hotelsModule.Server.HotelsServer(hotelService)
+    var userServer = new usersModule.Server.UsersServer(userService)
+    var authServer = new authModule.Server.AuthServer(userService, authService)
 
     bookingServer.Invoke(app)
     roomServer.Invoke(app)
@@ -54,6 +64,31 @@ db.Connect().then(function(db){
     console.log("error in connecting database ", err)
 })
 
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
+
+// Middleware Auth.
+app.use(function (req, res, next) { 
+    if (routeNeedsAuth.includes(req.url)) {  
+        let userToken = req.get("hoboos-secret")
+        authService.Authenticate(
+            userToken,
+        ).then(function(data){
+            req.User = data
+            next()
+        }).catch(function(err) {
+            if (err != undefined) {
+                res.status(400).send("Access Denied")
+            } else {
+                next()
+            }
+        })
+    } else {
+        res.status(400).send("Needs admin access")
+        // TODO: Auth for admin or something else.
+    }
+})
 
 var server = app.listen(process.env.PORT, function () {
    var host = server.address().address

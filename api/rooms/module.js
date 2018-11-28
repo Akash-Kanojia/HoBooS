@@ -1,13 +1,13 @@
 "use strict"
 
-var RoomsServer = require("./server.js").RoomsServer
+var Server = require("./server.js")
 var RoomsService = require("./service.js").RoomsService
 var RoomsRepository = require("./repository.js").RoomsRepository
 var Room = require("./room.js").Room
 
 
 module.exports = {
-    RoomsServer,
+    Server,
     RoomsService,
     RoomsRepository,
     Room

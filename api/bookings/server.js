@@ -4,8 +4,11 @@ var Booking = require("./booking.js").Booking
 var Promise = require("core-js").Promise
 
 // Routes.
-const bookings = "/bookings"
-const bookingByID = "/bookings/:id"
+
+var Routes = {
+    bookings: "/bookings",
+    bookingByID:"/bookings/:id"
+}
 
 // BookingsServer serve and listen thes booking's rest api.
 class BookingsServer{
@@ -19,7 +22,7 @@ BookingsServer.prototype.Invoke = function(app) {
    let BookingsService = this.BookingsService
    
     // Create booking.
-    app.post(bookings, function (req, res) {
+    app.post(Routes.bookings, function (req, res) {
         var hotel_id = req.get("hotel_id")
         var room_id = req.get("room_id")
         var user_email = req.get("user_email")
@@ -44,7 +47,7 @@ BookingsServer.prototype.Invoke = function(app) {
      })
 
      // Find bookings.
-    app.get(bookings, function (req, res) {
+    app.get(Routes.bookings, function (req, res) {
         var filter = filterOptions(req)
     
         BookingsService.Find(
@@ -58,13 +61,13 @@ BookingsServer.prototype.Invoke = function(app) {
     })
 
     // Update bookings.
-    app.put(bookingByID, function(req, res) {
+    app.put(Routes.bookingByID, function(req, res) {
         // TODO: update bookings with limitations.
         res.send("can't update bookings at the moment")
     })
 
     // Delete bookings.
-    app.delete(bookingByID, function(req, res) {
+    app.delete(Routes.bookingByID, function(req, res) {
         // TODO: delete bookings with a valid usecase.
         res.send("can't delete bookings at the moment")
     })
@@ -98,5 +101,6 @@ function filterOptions(req) {
 }
 
 module.exports = {
-    BookingsServer
+    BookingsServer,
+    Routes
 }

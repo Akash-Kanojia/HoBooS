@@ -1,13 +1,13 @@
 "use strict"
 
-var UsersServer = require("./server.js").UsersServer
+var Server = require("./server.js")
 var UsersService = require("./service.js").UsersService
 var UsersRepository = require("./repository.js").UsersRepository
 var User = require("./user.js").User
 
 
 module.exports = {
-    UsersServer,
+    Server,
     UsersService,
     UsersRepository,
     User

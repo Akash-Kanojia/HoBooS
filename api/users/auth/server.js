@@ -1,26 +1,28 @@
 "use strict"
 var User = require("../user.js").User
 var passwordSalt = require("../user.js").passwordSalt
+var Token = require("./token.js").Token
 var crypto = require('crypto')
-var CookieUtil = require("./cookie.js").CookieUtil
 
 // Routes.
-const login = "/login"
-const register = "/register"
-
+var Routes = {
+    login: "/login",
+    register: "/register"
+}
 // AuthServer listen and serves the user auth's rest api.
 class AuthServer{
-    constructor(UsersService){
+    constructor(UsersService, AuthService){
         this.UsersService = UsersService
+        this.AuthService = AuthService
     }
 }
 
 // Inbvokes the server.
 AuthServer.prototype.Invoke = function(app) {
     let UsersService = this.UsersService
-   
+    let AuthService = this.AuthService
     // Register user for hoboos.
-    app.post(register, function (req, res) {
+    app.post(Routes.register, function (req, res) {
         var userReq = JSON.parse(JSON.stringify(req.body))
         if  (userReq.password == null || userReq.password == "") {
             res.send("password can't be empty")
@@ -46,7 +48,7 @@ AuthServer.prototype.Invoke = function(app) {
      })
 
     // login user for hoboos.
-    app.post(login, function (req, res) {
+    app.post(Routes.login, function (req, res) {
         var userReq = JSON.parse(JSON.stringify(req.body))
         if  (userReq.password == null || userReq.password == "") {
             res.send("password can't be empty")
@@ -62,24 +64,18 @@ AuthServer.prototype.Invoke = function(app) {
                 ).update(userReq.password)
                 .digest("hex")        
 
-                // set cookie
+                // Ensure token.
                 if (secret == data[0].secret) {
-                    let cookie = req.cookies && req.cookies.hoboos_secret
-                    let cookieUtil = new CookieUtil()
-                    if (cookie === undefined)
-                    {
-                    // no: set a new cookie
-                    res.cookie('hoboos_secret',cookieUtil.createCookie(userReq.email), { maxAge: 900000, httpOnly: true }).send("");
-                    console.log('cookie created successfully');
-                    } 
-                    else
-                    {
-                    // yes, cookie was already present 
-                    user = cookieUtil.getUser(cookie)
-                    console.log('cookie exists', user);
-                    } 
+                    let userToken = req.get("hoboos-secret")
+                    let token = new Token()
+                    AuthService.Authenticate(
+                        userToken,
+                    ).then(function(data){
+                        res.send("login success")
+                    }).catch(function(err) {
+                        res.send({"hoboos-secret": token.create(userReq.email)})
+                    })
                 }
-
             }).catch(function(err){
                 console.log("error in creating user, ", err);
                 var responseBody = "error in creating user", err
@@ -90,5 +86,6 @@ AuthServer.prototype.Invoke = function(app) {
 }
 
 module.exports = {
-    AuthServer
+    AuthServer,
+    Routes
 }
