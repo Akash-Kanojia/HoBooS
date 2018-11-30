@@ -11,10 +11,21 @@ var authModule = require("./api/users/auth/module.js")
 
 var app = express();
 var authService
-var routeNeedsAuth = [
+var routeNeedsUserAuth = [
     hotelsModule.Server.Routes.hotels,
     roomsModule.Server.Routes.rooms,
     bookingsModule.Server.Routes.bookings,
+]
+
+var routeNeedsAdminAuth = [
+    hotelsModule.Server.Routes.hotels,
+    hotelsModule.Server.Routes.hotelById,
+    roomsModule.Server.Routes.rooms,
+    roomsModule.Server.Routes.roomById,
+    bookingsModule.Server.Routes.bookings,
+    bookingsModule.Server.Routes.bookingByID,
+    usersModule.Server.Routes.users,
+    usersModule.Server.Routes.userByEmail,
 ]
 
 app.use(bodyParser.json());
@@ -70,7 +81,7 @@ app.use(cors({
 
 // Middleware Auth.
 app.use(function (req, res, next) { 
-    if (routeNeedsAuth.includes(req.url)) {  
+    if (routeNeedsUserAuth.includes(req.url)) {  
         let userToken = req.get("hoboos-secret")
         authService.Authenticate(
             userToken,
@@ -84,9 +95,10 @@ app.use(function (req, res, next) {
                 next()
             }
         })
+    } else if (routeNeedsAdminAuth.includes(req.url)) {
+        // TODO: Auth for admin.
     } else {
-        res.status(400).send("Needs admin access")
-        // TODO: Auth for admin or something else.
+        next()
     }
 })
 

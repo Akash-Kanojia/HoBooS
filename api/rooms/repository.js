@@ -16,8 +16,7 @@ RoomsRepository.prototype.Find = function(filterOptions, otherOptions) {
     let filters = filterOptions
     let others = otherOptions
     return new Promise(function(resolve, reject){
-        console.log("find rooms", {...filters, ...others});
-        
+        // console.log("find rooms", {...filters, ...others});
         db.collection(roomCollectionName).find(
             {...filters, ...others},
         ).toArray().then(function(data){

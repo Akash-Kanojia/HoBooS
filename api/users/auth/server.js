@@ -25,9 +25,9 @@ AuthServer.prototype.Invoke = function(app) {
     app.post(Routes.register, function (req, res) {
         var userReq = JSON.parse(JSON.stringify(req.body))
         if  (userReq.password == null || userReq.password == "") {
-            res.send("password can't be empty")
+            res.status(400).send("password can't be empty")
         } else if (userReq.email == null || userReq.email == "") {
-            res.send("email can't be empty")
+            res.status(400).send("email can't be empty")
         } else {
             var user = new User(
                 userReq.email,
@@ -37,7 +37,7 @@ AuthServer.prototype.Invoke = function(app) {
             UsersService.Create(
                 user,
             ).then(function(data){
-                console.log(data)
+                // console.log(data)
                 res.send(user);
             }).catch(function(err){
                 console.log("error in creating user, ", err);
@@ -51,9 +51,9 @@ AuthServer.prototype.Invoke = function(app) {
     app.post(Routes.login, function (req, res) {
         var userReq = JSON.parse(JSON.stringify(req.body))
         if  (userReq.password == null || userReq.password == "") {
-            res.send("password can't be empty")
+            res.status(400).send("password can't be empty")
         } else if (userReq.email == null || userReq.email == "") {
-            res.send("email can't be empty")
+            res.status(400).send("email can't be empty")
         } else {
             UsersService.Find(
                 {email: userReq.email},
@@ -71,14 +71,16 @@ AuthServer.prototype.Invoke = function(app) {
                     AuthService.Authenticate(
                         userToken,
                     ).then(function(data){
-                        res.send("login success")
+                        res.status(200).send("login success")
                     }).catch(function(err) {
                         res.send({"hoboos-secret": token.create(userReq.email)})
                     })
+                } else {
+                    res.status(400).send("password incorrect")
                 }
             }).catch(function(err){
-                console.log("error in creating user, ", err);
-                var responseBody = "error in creating user", err
+                console.log("error in login, ", err);
+                var responseBody = "user not found " + err
                 res.send(responseBody)
             })   
         }

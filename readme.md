@@ -33,7 +33,11 @@ node main.js
 MONGO_DB_URL="mongodb://127.0.0.1:27017"  PORT="8090" node main.js
 ```
 
-
+- Optional: You can use dump data for mongodb. run following commands.
+```
+mongoimport --db hoboos --collection hotels --file dumps/hotels.json
+mongoimport --db hoboos --collection rooms --file dumps/rooms.json
+```
 
 ## Usage
 Once application goes in running state api's can be hit on `http://localhost:8090`

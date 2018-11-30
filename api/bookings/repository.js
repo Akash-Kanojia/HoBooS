@@ -16,9 +16,28 @@ BookingsRepository.prototype.Find = function(filterOptions, projectionOptions) {
     let filters = filterOptions
     let projections = projectionOptions
     return new Promise(function(resolve, reject){
-        db.collection(bookingsCollectionName).find(
-            filters,
-            {projection : projections}
+        db.collection(bookingsCollectionName).aggregate(
+            [
+                { $lookup:
+                    {
+                      from: 'hotels',
+                      localField: 'hotel_id',
+                      foreignField: 'id',
+                      as: 'hotel_details'
+                    }
+                },
+                {   
+                    $lookup: {
+                      from: 'rooms',
+                      localField: 'room_id',
+                      foreignField: 'id',
+                      as: 'room_details'
+                    }
+                },
+                { 
+                    $match: filters
+                },
+            ]
         ).toArray().then(function(data){
             resolve(data)
         }).catch(function(err){

@@ -25,11 +25,10 @@ BookingsServer.prototype.Invoke = function(app) {
     app.post(Routes.bookings, function (req, res) {
         var hotel_id = req.get("hotel_id")
         var room_id = req.get("room_id")
-        var user_email = req.get("user_email")
         var bookingReq = JSON.parse(JSON.stringify(req.body))
         var booking = new Booking(
             null,
-            user_email,
+            req.User,
             hotel_id,
             room_id,
             bookingReq.from,
@@ -49,7 +48,6 @@ BookingsServer.prototype.Invoke = function(app) {
      // Find bookings.
     app.get(Routes.bookings, function (req, res) {
         var filter = filterOptions(req)
-    
         BookingsService.Find(
             filter,
         ).then(function(data){
@@ -75,15 +73,14 @@ BookingsServer.prototype.Invoke = function(app) {
 
 // Helper method to create options object from request
 function filterOptions(req) {
-    var user_email = req.get("user_email")
     var hotel_id = req.get("hotel_id")
     var room_id = req.get("room_id")
     var from = req.get("from")
     var to = req.get("to")    
 
     var option = {}
-    if (user_email != undefined && user_email != null) {
-        option.user_email = user_email
+    if (req.User != undefined && req.User != null) {
+        option.user_email = req.User
     }
     if (hotel_id != undefined && hotel_id != null) {
         option.hotel_id = hotel_id
@@ -94,8 +91,8 @@ function filterOptions(req) {
     if (from != undefined && from != null && to != undefined && to != null) {
         option.from = {}
         option.to = {}
-        option.from.$gte = from
-        option.to.$lte = to
+        option.from.$gte = new Date(from).toISOString()
+        option.to.$lte = new Date(to).toISOString()
     }
     return option
 }

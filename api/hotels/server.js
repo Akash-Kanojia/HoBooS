@@ -90,15 +90,19 @@ HotelsServer.prototype.Invoke = function(app) {
 // Helper method to create options object from request
 function hotelsFilterOptions(req) {
     var id = req.get("id")
-    var type = req.get("type")    
+    var type = req.get("type")
+    var loc = req.get("location")    
 
     var option = {}
 
-    if (type != undefined && type != null) {
+    if (type != undefined && type != null && type != "") {
         option.type = type
     }
-    if (id != undefined && id != null) {
+    if (id != undefined && id != null && id != "") {
         option.id = id
+    }
+    if (loc != undefined && loc != null && loc != "") {
+        option.location = loc
     }
     
     return option

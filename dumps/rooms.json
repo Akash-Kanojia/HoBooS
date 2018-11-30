@@ -1,0 +1,11 @@
+{"_id":{"$oid":"5bea02345107f60d83a91fb8"},"id":"700d4637-b60d-4f4f-8fec-7f22ad2cc0e5","no":"1001","hotel_id":"81b741b2-54e5-4265-8508-cd45bdb8c2b3","type":"double-bed"}
+{"_id":{"$oid":"5bea03793580810d8afb698c"},"id":"d7744282-612b-4d95-bddb-7c98fed19848","no":"1103","hotel_id":"ff7ea8a3-9523-4b2f-9817-2d89f30cdb0c","type":"king-size"}
+{"_id":{"$oid":"5bea20b8e6bcc40f198a7589"},"id":"58441195-7b41-4675-a9bc-ad648cbe9eae","no":"1102","hotel_id":"ff7ea8a3-9523-4b2f-9817-2d89f30cdb0c","type":"double-bed"}
+{"_id":{"$oid":"5bea38121ec0ce106728d149"},"id":"2e832f9b-6861-4272-b104-39aa465f2b3e","no":"305","hotel_id":"f6a6438d-aa27-4637-890f-6c9dd542ff8d","type":"queen-size"}
+{"_id":{"$oid":"5bfe9ec2095f1f16cd6842a4"},"id":"04c4a442-4ebb-4493-86df-05a133132e0d","no":"1002","hotel_id":"81b741b2-54e5-4265-8508-cd45bdb8c2b3","type":"king-size"}
+{"_id":{"$oid":"5bfed50ac2f0261b2c88bbfe"},"id":"8eeb5097-831d-4ac8-b5ed-a0c22bbe1c02","no":"1003","hotel_id":"81b741b2-54e5-4265-8508-cd45bdb8c2b3","type":"double-bed"}
+{"_id":{"$oid":"5bfed5f7bba27e1b596200b3"},"id":"3a9ea734-2dbe-4ad6-ac36-35eaada2110f","no":"304","hotel_id":"f6a6438d-aa27-4637-890f-6c9dd542ff8d","type":"queen-size"}
+{"_id":{"$oid":"5bfed614bba27e1b596200b4"},"id":"1abb1758-b5f9-4bee-b41b-1dfeba2ea2a4","no":"303","hotel_id":"f6a6438d-aa27-4637-890f-6c9dd542ff8d","type":"double-bed"}
+{"_id":{"$oid":"5bfed61bbba27e1b596200b5"},"id":"97063b1d-5caa-42ec-b91f-71ce74f8dac9","no":"302","hotel_id":"f6a6438d-aa27-4637-890f-6c9dd542ff8d","type":"king-size"}
+{"_id":{"$oid":"5bfed638bba27e1b596200b6"},"id":"0a98a7ae-3c87-4356-90e5-7ff2e68cf894","no":"301","hotel_id":"f6a6438d-aa27-4637-890f-6c9dd542ff8d","type":"double-bed"}
+{"_id":{"$oid":"5bfed649bba27e1b596200b7"},"id":"db9ba7ce-8dc2-440a-934f-d1fe0cc48c58","no":"1101","hotel_id":"ff7ea8a3-9523-4b2f-9817-2d89f30cdb0c","type":"queen-size"}

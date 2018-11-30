@@ -18,8 +18,7 @@ class RoomsServer{
 
 // Invokes the server.
 RoomsServer.prototype.Invoke = function(app) {
-    let RoomsService = this.RoomsService
-   
+    let RoomsService = this.RoomsService   
     // Create room for hotel.
     app.post(Routes.rooms, function (req, res) {
         var hotel_id = req.get("hotel_id")
@@ -43,7 +42,9 @@ RoomsServer.prototype.Invoke = function(app) {
      // Find rooms.
     app.get(Routes.rooms, function (req, res) {
         var filters = roomsFilterOptions(req)
-        var others = roomsOtherOptions(req)        
+        var others = roomsOtherOptions(req)     
+        
+        // console.log("rooms filter", filters, others)
         RoomsService.Find(
             filters,
             others,
@@ -73,15 +74,19 @@ RoomsServer.prototype.Invoke = function(app) {
 function roomsFilterOptions(req) {
     var hotel_id = req.get("hotel_id")
     var id = req.get("id")
+    var type = req.get("type")
 
     var option = {}
-    if (hotel_id != undefined && hotel_id != null) {
+    if (hotel_id != undefined && hotel_id != null && hotel_id != "" && hotel_id != "undefined") {
         option.hotel_id = hotel_id
     }
     if (id != undefined && id != null) {
         option.id = id
     }
-   
+  
+    if (type != undefined && type != null && type != "") {
+        option.type = type
+    }
     return option
 }
 
@@ -92,14 +97,17 @@ function roomsOtherOptions(req) {
     var to = req.get("to") 
 
     var option = {}
-    if (available != undefined && available != null) {
+    if (available != undefined && available != null && available != "") {
         option.available = available
     }
-    if (from != undefined && from != null && to != undefined && to != null) {
+  
+    if (from != undefined && from != null && from != "" && from != "undefined"
+        && to != undefined && to != null && to != "" && to != "undefined"
+    ) {
         option.from = {}
         option.to = {}
-        option.from.$gte = from
-        option.to.$lte = to
+        option.from.$gte = new Date(from).toISOString()
+        option.to.$lte = new Date(to).toISOString()
     }
 
     return option

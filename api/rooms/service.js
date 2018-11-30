@@ -20,7 +20,6 @@ RoomsService.prototype.Find = function(filterOptions, otherOptions, projection) 
     let rooms = this.RoomsRepository
     let roomFilters = filterOptions
     let roomOthers = otherOptions
-    
     let noRooms = this.UnAvailableRooms(roomFilters, roomOthers)
 
     return new Promise(function(resolve, reject){
@@ -40,7 +39,7 @@ RoomsService.prototype.Find = function(filterOptions, otherOptions, projection) 
             })
         } else {
             rooms.Find(
-                filters, 
+                roomFilters, 
             ).then(function(data){
                 resolve(data)
             }).catch(function(err){
@@ -118,14 +117,14 @@ RoomsService.prototype.UnAvailableRooms = function(filters, others) {
         room_id: 1,
     }
 
-    bookings = this.BookingsRepository
+    let bookings = this.BookingsRepository
 
     return new Promise(function(resolve, reject){
         bookings.Find(
             bookingFilterOption, 
             bookingProjectionOptions,
         ).then(function(data){
-            console.log("booking data", data)
+            // console.log("booking data", data)
             var roomIds = []
             data.forEach(element => {
                 if (element.room_id) {
@@ -133,7 +132,7 @@ RoomsService.prototype.UnAvailableRooms = function(filters, others) {
                 }
             });
             
-            console.log("rooms data", roomIds)
+            // console.log("rooms data", roomIds)
             resolve(roomIds)
         }).catch(function(err){
             reject(err)
