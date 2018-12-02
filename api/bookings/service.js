@@ -21,8 +21,12 @@ BookingsService.prototype.Find = function(filterOptions, projectionOptions) {
         bookings.Find(
             filters,
             projections,
-        ).then(function(data){
-            resolve(data)
+        ).then(function(bookings){
+            bookings.map(booking => {
+                booking.from = new Date(booking.from).toLocaleString('en-US', { timeZone: 'UTC' })
+                booking.to = new Date(booking.to).toLocaleString('en-US', { timeZone: 'UTC' })
+            })
+            resolve(bookings)
         }).catch(function(err){
             reject(err)
         })
